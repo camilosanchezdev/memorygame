@@ -231,13 +231,13 @@ class GameComponent {
                 // + '-i'
                 let card1 = document.getElementById(this.arrNumbers[j] + '-i');
                 this.level1Results[this.arrNumbers[j]] = i;
-                card1.style.backgroundImage = "url('../../../assets/" + this.tortugas[i].imagen + "')";
+                card1.style.backgroundImage = "url('./assets/" + this.tortugas[i].imagen + "')";
                 card1.style.backgroundSize = '100%';
                 card1.style.backgroundPosition = '50% 50%';
                 card1.style.backgroundRepeat = 'no-repeat';
                 let card2 = document.getElementById(this.arrNumbers[j + 1] + '-i');
                 this.level1Results[this.arrNumbers[j + 1]] = i;
-                card2.style.backgroundImage = "url('../../../assets/" + this.tortugas[i].imagen + "')";
+                card2.style.backgroundImage = "url('./assets/" + this.tortugas[i].imagen + "')";
                 card2.style.backgroundSize = '100%';
                 card2.style.backgroundPosition = '50% 50%';
                 card2.style.backgroundRepeat = 'no-repeat';
