@@ -119,10 +119,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function GameComponent_div_4_Template(rf, ctx) { if (rf & 1) {
+function GameComponent_div_6_Template(rf, ctx) { if (rf & 1) {
     const _r3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 4);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function GameComponent_div_4_Template_div_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r3); const tarjeta_r1 = ctx.$implicit; const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r2.flip(tarjeta_r1); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function GameComponent_div_6_Template_div_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r3); const tarjeta_r1 = ctx.$implicit; const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"](); return ctx_r2.flip(tarjeta_r1); });
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "div", 5);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](2, "div", 6);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -135,6 +135,7 @@ function GameComponent_div_4_Template(rf, ctx) { if (rf & 1) {
 class GameComponent {
     constructor() {
         this.flips = 0;
+        this.flag = true;
         this.arrNumbers = [];
         this.level1 = [0, 1, 2, 3, 4, 5, 6, 7];
         this.level1Results = [];
@@ -175,19 +176,28 @@ class GameComponent {
     }
     prueba() {
         // console.log(this.card);
+        this.level1.forEach(element => {
+            var card1 = document.getElementById(element);
+            card1.style.transform = 'translateX(0%) rotateY(0deg)';
+        });
+        this.arrNumbers = [];
+        this.randomTarjetas();
+        this.jugar();
     }
     ngAfterViewChecked() {
         this.jugar();
     }
     flip(value) {
         this.flips++;
-        var card = document.getElementById(value);
-        // var card = document.getElementById('1');
-        //card.style.background = 'red';
-        card.style.transform = 'translateX(-100%) rotateY(-180deg)';
-        // card.classList.toggle('is-flipped');
-        // card.addEventListener( 'click', function() {
-        if (this.flips == 2) {
+        if (this.flips == 1) {
+            var card = document.getElementById(value);
+            card.style.transform = 'translateX(-100%) rotateY(-180deg)';
+            this.turtle = this.level1Results[value];
+            this.choice = value;
+        }
+        else {
+            var card = document.getElementById(value);
+            card.style.transform = 'translateX(-100%) rotateY(-180deg)';
             if (this.turtle != this.level1Results[value]) {
                 // console.log(this.card);
                 var sec = 1;
@@ -204,16 +214,13 @@ class GameComponent {
                         card2.style.transform = 'translateX(0%) rotateY(0deg)';
                         clearInterval(idInterval);
                     }
+                    //this.flag = true;
                 } // fin timer
             }
             //restart
             this.flips = 0;
             this.turtle = -1;
             this.choice = -1;
-        }
-        else {
-            this.turtle = this.level1Results[value];
-            this.choice = value;
         }
         // });
     }
@@ -263,20 +270,26 @@ class GameComponent {
     }
 }
 GameComponent.ɵfac = function GameComponent_Factory(t) { return new (t || GameComponent)(); };
-GameComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: GameComponent, selectors: [["app-game"]], decls: 5, vars: 1, consts: [[1, "container"], [3, "click"], [1, "tarjetas"], ["class", "tarjeta", 3, "id", "click", 4, "ngFor", "ngForOf"], [1, "tarjeta", 3, "id", "click"], [1, "elemento"], [1, "card__face", "card__face--back", 3, "id"]], template: function GameComponent_Template(rf, ctx) { if (rf & 1) {
+GameComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({ type: GameComponent, selectors: [["app-game"]], decls: 9, vars: 1, consts: [[1, "container"], [1, "tarjetas"], ["class", "tarjeta", 3, "id", "click", 4, "ngFor", "ngForOf"], [1, "myButton", 3, "click"], [1, "tarjeta", 3, "id", "click"], [1, "elemento"], [1, "card__face", "card__face--back", 3, "id"]], template: function GameComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "button", 1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function GameComponent_Template_button_click_1_listener() { return ctx.prueba(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "CLick");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "h1");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "Memory Game");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "div", 2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](4, GameComponent_div_4_Template, 3, 2, "div", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "h2");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4, "Teenage Mutant Ninja Turtles");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "div", 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](6, GameComponent_div_6_Template, 3, 2, "div", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "button", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function GameComponent_Template_button_click_7_listener() { return ctx.prueba(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](8, "Restart");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     } if (rf & 2) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](6);
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.level1);
-    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["NgForOf"]], styles: [".container[_ngcontent-%COMP%]{\r\n    width: 50%;\r\n    margin: 0 auto;\r\n}\r\n.container[_ngcontent-%COMP%]   .tarjetas[_ngcontent-%COMP%]{\r\n    height: 700px;\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    justify-content: center;\r\n    align-content: center;\r\n}\r\n.container[_ngcontent-%COMP%]   .tarjetas[_ngcontent-%COMP%]   .tarjeta[_ngcontent-%COMP%] {\r\n    width: 120px;\r\n    height: 160px;\r\n    background-color: white;\r\n    margin: 15px;\r\n    cursor: pointer;\r\nbox-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);\r\n\r\nposition: relative;\r\ncursor: pointer;\r\ntransform-style: preserve-3d;\r\ntransform-origin: center right;\r\ntransition: transform 1s;\r\n\r\n\r\n}\r\n.container[_ngcontent-%COMP%]   .tarjetas[_ngcontent-%COMP%]   .tarjeta[_ngcontent-%COMP%]:hover{\r\n    \r\n\r\n}\r\n.card__face[_ngcontent-%COMP%]{\r\n    \r\n}\r\n.card__face--back[_ngcontent-%COMP%] {\r\n\r\n    -webkit-backface-visibility: hidden;\r\n\r\n            backface-visibility: hidden;\r\n    \r\n    width: 120px;\r\n    height: 160px;\r\n    transform: rotateY(180deg);\r\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9nYW1lL2dhbWUuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLFVBQVU7SUFDVixjQUFjO0FBQ2xCO0FBQ0E7SUFDSSxhQUFhO0lBQ2IsYUFBYTtJQUNiLGVBQWU7SUFDZix1QkFBdUI7SUFDdkIscUJBQXFCO0FBQ3pCO0FBQ0E7SUFDSSxZQUFZO0lBQ1osYUFBYTtJQUNiLHVCQUF1QjtJQUN2QixZQUFZO0lBQ1osZUFBZTtBQUduQiw0Q0FBNEM7QUFDNUMsS0FBSztBQUNMLGtCQUFrQjtBQUNsQixlQUFlO0FBQ2YsNEJBQTRCO0FBQzVCLDhCQUE4QjtBQUM5Qix3QkFBd0I7QUFDeEIsd0JBQXdCOztBQUV4QjtBQUNBO0lBQ0ksbURBQW1EOztBQUV2RDtBQUNBO0lBQ0ksd0JBQXdCO0FBQzVCO0FBQ0E7O0lBRUksbUNBQTJCOztZQUEzQiwyQkFBMkI7SUFDM0Isc0JBQXNCO0lBQ3RCLFlBQVk7SUFDWixhQUFhO0lBQ2IsMEJBQTBCO0VBQzVCIiwiZmlsZSI6InNyYy9hcHAvY29tcG9uZW50cy9nYW1lL2dhbWUuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jb250YWluZXJ7XHJcbiAgICB3aWR0aDogNTAlO1xyXG4gICAgbWFyZ2luOiAwIGF1dG87XHJcbn1cclxuLmNvbnRhaW5lciAudGFyamV0YXN7XHJcbiAgICBoZWlnaHQ6IDcwMHB4O1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGZsZXgtd3JhcDogd3JhcDtcclxuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gICAgYWxpZ24tY29udGVudDogY2VudGVyO1xyXG59XHJcbi5jb250YWluZXIgLnRhcmpldGFzIC50YXJqZXRhIHtcclxuICAgIHdpZHRoOiAxMjBweDtcclxuICAgIGhlaWdodDogMTYwcHg7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcclxuICAgIG1hcmdpbjogMTVweDtcclxuICAgIGN1cnNvcjogcG9pbnRlcjtcclxuICAgIC13ZWJraXQtYm94LXNoYWRvdzogMHB4IDBweCA1cHggMHB4IHJnYmEoMCwwLDAsMC43NSk7XHJcbi1tb3otYm94LXNoYWRvdzogMHB4IDBweCA1cHggMHB4IHJnYmEoMCwwLDAsMC43NSk7XHJcbmJveC1zaGFkb3c6IDBweCAwcHggNXB4IDBweCByZ2JhKDAsMCwwLDAuNzUpO1xyXG4vKiAgKi9cclxucG9zaXRpb246IHJlbGF0aXZlO1xyXG5jdXJzb3I6IHBvaW50ZXI7XHJcbnRyYW5zZm9ybS1zdHlsZTogcHJlc2VydmUtM2Q7XHJcbnRyYW5zZm9ybS1vcmlnaW46IGNlbnRlciByaWdodDtcclxudHJhbnNpdGlvbjogdHJhbnNmb3JtIDFzO1xyXG4vKiBwb3NpdGlvbjogYWJzb2x1dGU7ICovXHJcblxyXG59XHJcbi5jb250YWluZXIgLnRhcmpldGFzIC50YXJqZXRhOmhvdmVye1xyXG4gICAgLyogdHJhbnNmb3JtOiB0cmFuc2xhdGVYKC0xMDAlKSByb3RhdGVZKC0xODBkZWcpOyAqL1xyXG5cclxufVxyXG4uY2FyZF9fZmFjZXtcclxuICAgIC8qIHBvc2l0aW9uOiBhYnNvbHV0ZTsgKi9cclxufVxyXG4uY2FyZF9fZmFjZS0tYmFjayB7XHJcblxyXG4gICAgYmFja2ZhY2UtdmlzaWJpbGl0eTogaGlkZGVuO1xyXG4gICAgLyogYmFja2dyb3VuZDogYmx1ZTsgKi9cclxuICAgIHdpZHRoOiAxMjBweDtcclxuICAgIGhlaWdodDogMTYwcHg7XHJcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZVkoMTgwZGVnKTtcclxuICB9Il19 */"] });
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_1__["NgForOf"]], styles: [".container[_ngcontent-%COMP%]{\r\n    width: 50%;\r\n    margin: 0 auto;\r\n}\r\n.container[_ngcontent-%COMP%]   .tarjetas[_ngcontent-%COMP%]{\r\n    height: 500px;\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    justify-content: center;\r\n    align-content: center;\r\n}\r\n.container[_ngcontent-%COMP%]   h1[_ngcontent-%COMP%]{\r\n    font-family: 'Do Hyeon', sans-serif;\r\n    color: rgb(4, 80, 25);\r\n    font-size: 50px;\r\n    text-align: center;\r\n    text-shadow: 0 0 2px #fff;\r\n}\r\n.container[_ngcontent-%COMP%]   h2[_ngcontent-%COMP%]{\r\n    font-family: 'Do Hyeon', sans-serif;\r\n    color: rgb(4, 80, 25);\r\n    font-size: 30px;\r\n    text-align: center;\r\n    text-shadow: 0 0 2px #fff;\r\n}\r\n.container[_ngcontent-%COMP%]   .tarjetas[_ngcontent-%COMP%]   .tarjeta[_ngcontent-%COMP%] {\r\n    width: 120px;\r\n    height: 160px;\r\n    background-color: rgb(147, 233, 171);\r\n    margin: 15px;\r\n    cursor: pointer;\r\nbox-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);\r\n\r\nposition: relative;\r\ncursor: pointer;\r\ntransform-style: preserve-3d;\r\ntransform-origin: center right;\r\ntransition: transform 1s;\r\n\r\n\r\n}\r\n.myButton[_ngcontent-%COMP%] {\r\n    \r\n\tbox-shadow:inset 0px 1px 0px 0px #caefab;\r\n\tbackground:linear-gradient(to bottom, #77d42a 5%, #5cb811 100%);\r\n\tbackground-color:#77d42a;\r\n\tborder-radius:6px;\r\n\tborder:1px solid #268a16;\r\n\tdisplay:inline-block;\r\n\tcursor:pointer;\r\n\tcolor:#306108;\r\n\tfont-family:Arial;\r\n\tfont-size:25px;\r\n\tfont-weight:bold;\r\n\tpadding:6px 24px;\r\n\ttext-decoration:none;\r\n    text-shadow:0px 1px 0px #aade7c;\r\n    display: block;\r\n    margin: 0 auto;\r\n}\r\n.myButton[_ngcontent-%COMP%]:hover {\r\n\tbackground:linear-gradient(to bottom, #5cb811 5%, #77d42a 100%);\r\n\tbackground-color:#5cb811;\r\n}\r\n.myButton[_ngcontent-%COMP%]:active {\r\n\tposition:relative;\r\n\ttop:1px;\r\n}\r\n.card__face--back[_ngcontent-%COMP%] {\r\n\r\n    -webkit-backface-visibility: hidden;\r\n\r\n            backface-visibility: hidden;\r\n    \r\n    width: 120px;\r\n    height: 160px;\r\n    transform: rotateY(180deg);\r\n  }\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvY29tcG9uZW50cy9nYW1lL2dhbWUuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLFVBQVU7SUFDVixjQUFjO0FBQ2xCO0FBQ0E7SUFDSSxhQUFhO0lBQ2IsYUFBYTtJQUNiLGVBQWU7SUFDZix1QkFBdUI7SUFDdkIscUJBQXFCO0FBQ3pCO0FBQ0E7SUFDSSxtQ0FBbUM7SUFDbkMscUJBQXFCO0lBQ3JCLGVBQWU7SUFDZixrQkFBa0I7SUFDbEIseUJBQXlCO0FBQzdCO0FBQ0E7SUFDSSxtQ0FBbUM7SUFDbkMscUJBQXFCO0lBQ3JCLGVBQWU7SUFDZixrQkFBa0I7SUFDbEIseUJBQXlCO0FBQzdCO0FBQ0E7SUFDSSxZQUFZO0lBQ1osYUFBYTtJQUNiLG9DQUFvQztJQUNwQyxZQUFZO0lBQ1osZUFBZTtBQUduQiw0Q0FBNEM7QUFDNUMsS0FBSztBQUNMLGtCQUFrQjtBQUNsQixlQUFlO0FBQ2YsNEJBQTRCO0FBQzVCLDhCQUE4QjtBQUM5Qix3QkFBd0I7QUFDeEIsd0JBQXdCOztBQUV4QjtBQUNBOztDQUVDLHdDQUF3QztDQUN4QywrREFBK0Q7Q0FDL0Qsd0JBQXdCO0NBQ3hCLGlCQUFpQjtDQUNqQix3QkFBd0I7Q0FDeEIsb0JBQW9CO0NBQ3BCLGNBQWM7Q0FDZCxhQUFhO0NBQ2IsaUJBQWlCO0NBQ2pCLGNBQWM7Q0FDZCxnQkFBZ0I7Q0FDaEIsZ0JBQWdCO0NBQ2hCLG9CQUFvQjtJQUNqQiwrQkFBK0I7SUFDL0IsY0FBYztJQUNkLGNBQWM7QUFDbEI7QUFDQTtDQUNDLCtEQUErRDtDQUMvRCx3QkFBd0I7QUFDekI7QUFDQTtDQUNDLGlCQUFpQjtDQUNqQixPQUFPO0FBQ1I7QUFFQTs7SUFFSSxtQ0FBMkI7O1lBQTNCLDJCQUEyQjtJQUMzQixzQkFBc0I7SUFDdEIsWUFBWTtJQUNaLGFBQWE7SUFDYiwwQkFBMEI7RUFDNUIiLCJmaWxlIjoic3JjL2FwcC9jb21wb25lbnRzL2dhbWUvZ2FtZS5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNvbnRhaW5lcntcclxuICAgIHdpZHRoOiA1MCU7XHJcbiAgICBtYXJnaW46IDAgYXV0bztcclxufVxyXG4uY29udGFpbmVyIC50YXJqZXRhc3tcclxuICAgIGhlaWdodDogNTAwcHg7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZmxleC13cmFwOiB3cmFwO1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICBhbGlnbi1jb250ZW50OiBjZW50ZXI7XHJcbn1cclxuLmNvbnRhaW5lciBoMXtcclxuICAgIGZvbnQtZmFtaWx5OiAnRG8gSHllb24nLCBzYW5zLXNlcmlmO1xyXG4gICAgY29sb3I6IHJnYig0LCA4MCwgMjUpO1xyXG4gICAgZm9udC1zaXplOiA1MHB4O1xyXG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gICAgdGV4dC1zaGFkb3c6IDAgMCAycHggI2ZmZjtcclxufVxyXG4uY29udGFpbmVyIGgye1xyXG4gICAgZm9udC1mYW1pbHk6ICdEbyBIeWVvbicsIHNhbnMtc2VyaWY7XHJcbiAgICBjb2xvcjogcmdiKDQsIDgwLCAyNSk7XHJcbiAgICBmb250LXNpemU6IDMwcHg7XHJcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XHJcbiAgICB0ZXh0LXNoYWRvdzogMCAwIDJweCAjZmZmO1xyXG59XHJcbi5jb250YWluZXIgLnRhcmpldGFzIC50YXJqZXRhIHtcclxuICAgIHdpZHRoOiAxMjBweDtcclxuICAgIGhlaWdodDogMTYwcHg7XHJcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2IoMTQ3LCAyMzMsIDE3MSk7XHJcbiAgICBtYXJnaW46IDE1cHg7XHJcbiAgICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgICAtd2Via2l0LWJveC1zaGFkb3c6IDBweCAwcHggNXB4IDBweCByZ2JhKDAsMCwwLDAuNzUpO1xyXG4tbW96LWJveC1zaGFkb3c6IDBweCAwcHggNXB4IDBweCByZ2JhKDAsMCwwLDAuNzUpO1xyXG5ib3gtc2hhZG93OiAwcHggMHB4IDVweCAwcHggcmdiYSgwLDAsMCwwLjc1KTtcclxuLyogICovXHJcbnBvc2l0aW9uOiByZWxhdGl2ZTtcclxuY3Vyc29yOiBwb2ludGVyO1xyXG50cmFuc2Zvcm0tc3R5bGU6IHByZXNlcnZlLTNkO1xyXG50cmFuc2Zvcm0tb3JpZ2luOiBjZW50ZXIgcmlnaHQ7XHJcbnRyYW5zaXRpb246IHRyYW5zZm9ybSAxcztcclxuLyogcG9zaXRpb246IGFic29sdXRlOyAqL1xyXG5cclxufVxyXG4ubXlCdXR0b24ge1xyXG4gICAgXHJcblx0Ym94LXNoYWRvdzppbnNldCAwcHggMXB4IDBweCAwcHggI2NhZWZhYjtcclxuXHRiYWNrZ3JvdW5kOmxpbmVhci1ncmFkaWVudCh0byBib3R0b20sICM3N2Q0MmEgNSUsICM1Y2I4MTEgMTAwJSk7XHJcblx0YmFja2dyb3VuZC1jb2xvcjojNzdkNDJhO1xyXG5cdGJvcmRlci1yYWRpdXM6NnB4O1xyXG5cdGJvcmRlcjoxcHggc29saWQgIzI2OGExNjtcclxuXHRkaXNwbGF5OmlubGluZS1ibG9jaztcclxuXHRjdXJzb3I6cG9pbnRlcjtcclxuXHRjb2xvcjojMzA2MTA4O1xyXG5cdGZvbnQtZmFtaWx5OkFyaWFsO1xyXG5cdGZvbnQtc2l6ZToyNXB4O1xyXG5cdGZvbnQtd2VpZ2h0OmJvbGQ7XHJcblx0cGFkZGluZzo2cHggMjRweDtcclxuXHR0ZXh0LWRlY29yYXRpb246bm9uZTtcclxuICAgIHRleHQtc2hhZG93OjBweCAxcHggMHB4ICNhYWRlN2M7XHJcbiAgICBkaXNwbGF5OiBibG9jaztcclxuICAgIG1hcmdpbjogMCBhdXRvO1xyXG59XHJcbi5teUJ1dHRvbjpob3ZlciB7XHJcblx0YmFja2dyb3VuZDpsaW5lYXItZ3JhZGllbnQodG8gYm90dG9tLCAjNWNiODExIDUlLCAjNzdkNDJhIDEwMCUpO1xyXG5cdGJhY2tncm91bmQtY29sb3I6IzVjYjgxMTtcclxufVxyXG4ubXlCdXR0b246YWN0aXZlIHtcclxuXHRwb3NpdGlvbjpyZWxhdGl2ZTtcclxuXHR0b3A6MXB4O1xyXG59XHJcblxyXG4uY2FyZF9fZmFjZS0tYmFjayB7XHJcblxyXG4gICAgYmFja2ZhY2UtdmlzaWJpbGl0eTogaGlkZGVuO1xyXG4gICAgLyogYmFja2dyb3VuZDogYmx1ZTsgKi9cclxuICAgIHdpZHRoOiAxMjBweDtcclxuICAgIGhlaWdodDogMTYwcHg7XHJcbiAgICB0cmFuc2Zvcm06IHJvdGF0ZVkoMTgwZGVnKTtcclxuICB9Il19 */"] });
 /*@__PURE__*/ (function () { _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵsetClassMetadata"](GameComponent, [{
         type: _angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"],
         args: [{
