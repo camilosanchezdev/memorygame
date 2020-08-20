@@ -1,4 +1,4 @@
-# memorygame
+# MemoryGame
 Memory game with Angular
 
 # Images
